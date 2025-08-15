@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "financial-data-management-system",
+    "name": "Financial Data Management System - ExpertSoft",
+    "description": "Colección mínima para la prueba: CRUD de clientes y reportes basados en vistas SQL.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12345678"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/health",
+            "description": "Estado de la API y conexión a la BD"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "GET /clients (List)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/clients",
+            "description": "Lista de clientes (activos)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /clients/:id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/clients/1",
+              "host": ["{{base_url}}"],
+              "path": ["clients", "1"]
+            },
+            "description": "Detalle de cliente por ID"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /clients (Create)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_code\": \"CLI011\",\n  \"first_name\": \"Ana\",\n  \"last_name\": \"García\",\n  \"email\": \"ana@example.com\",\n  \"phone\": \"3001234567\",\n  \"address\": \"Calle 45 #67-89\",\n  \"city\": \"Bogotá\",\n  \"department\": \"Cundinamarca\"\n}"
+            },
+            "url": "{{base_url}}/clients",
+            "description": "Crear cliente"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /clients/:id (Update)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_code\": \"CLI011\",\n  \"first_name\": \"Ana María\",\n  \"last_name\": \"García López\",\n  \"email\": \"ana.garcia@example.com\",\n  \"phone\": \"3007654321\",\n  \"address\": \"Carrera 10 #20-30\",\n  \"city\": \"Bogotá\",\n  \"department\": \"Cundinamarca\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/clients/1",
+              "host": ["{{base_url}}"],
+              "path": ["clients", "1"]
+            },
+            "description": "Actualizar cliente"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /clients/:id (Soft delete)",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/clients/1",
+              "host": ["{{base_url}}"],
+              "path": ["clients", "1"]
+            },
+            "description": "Borrado lógico (is_active = false)"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /clients/:id/hard (Hard delete - opcional)",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/clients/1/hard",
+              "host": ["{{base_url}}"],
+              "path": ["clients", "1", "hard"]
+            },
+            "description": "Borrado permanente (si la ruta está habilitada)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints de gestión de clientes (CRUD)"
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "GET /reports/total-payments",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/reports/total-payments",
+            "description": "Pagos totales por cliente (vista: client_total_payments)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /reports/pending-invoices",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/reports/pending-invoices",
+            "description": "Facturas pendientes (vista: pending_invoices)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /reports/transactions-by-platform",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/reports/transactions-by-platform",
+            "description": "Transacciones por plataforma (vista: transactions_by_platform)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /reports/transactions-by-platform?platform=Nequi",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/reports/transactions-by-platform?platform=Nequi",
+              "host": ["{{base_url}}"],
+              "path": ["reports", "transactions-by-platform"],
+              "query": [{ "key": "platform", "value": "Nequi" }]
+            },
+            "description": "Transacciones filtradas por plataforma"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /reports/platforms",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/reports/platforms",
+            "description": "Listado de plataformas disponibles (para filtros del frontend)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Consultas de reportes respaldadas por vistas SQL"
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api",
+      "type": "string",
+      "description": "Base URL de la API"
+    }
+  ]
+}
+
