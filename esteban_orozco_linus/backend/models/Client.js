@@ -1,5 +1,9 @@
+// Propósito: Encapsular reglas de negocio
+// de clientes (validar, sanitizar y ejecutar SQL).
+
 const { executeQuery } = require('../config/database');
 const { body, validationResult } = require('express-validator');
+// Usa helpers BD y el validador.
 
 class Client {
   // --- Utilidades internas ---
@@ -23,6 +27,9 @@ class Client {
 
     return out;
   }
+    // Sanitización defensiva: recorta espacios, y string vacío → null (evita “cadenas vacías” en DB).
+    //Racional: normalizar antes de validar/insertar.
+    //static mapRow(dbRow){ ... } para transformar nombres/formatos si aplica.
 
   // --- Consultas ---
 
@@ -51,7 +58,7 @@ class Client {
     return await executeQuery(query);
   }
 
-  /**
+  /** Validacion
    * Obtener un cliente por ID 
    */
   static async getById(clientId) {

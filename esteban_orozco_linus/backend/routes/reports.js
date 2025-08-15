@@ -1,4 +1,5 @@
-
+// Propósito: Consultar vistas SQL ya 
+// calculadas (más mantenible y rápido de ajustar en BD).
 
 const express = require('express');
 const router = express.Router();

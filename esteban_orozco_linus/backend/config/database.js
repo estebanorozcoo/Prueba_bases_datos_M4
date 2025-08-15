@@ -1,12 +1,15 @@
-// backend/config/database.js
+// Propósito: Crear pool de conexiones y funciones utilitarias 
+// para consultas y transacciones, siempre con placeholders.
+
+// backend/config/database.js (Importa mysql2/promise y .env.)
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-/**
- * Configuración del pool de conexión.
- * - charset utf8mb4 para soportar emojis y acentos
- * - multipleStatements en false por seguridad
- */
+
+
+
+
+
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
@@ -22,6 +25,7 @@ const dbConfig = {
   charset: 'utf8mb4',
   multipleStatements: false,
 };
+// Lee configuración de BD con defaults sensatos.
 
 const pool = mysql.createPool(dbConfig);
 

@@ -1,4 +1,6 @@
 -- Database: db_esteban_orozco_linus
+-- Propósito: crear la BD completa con relaciones 
+-- e índices donde aplica, y vistas de reportes.
 
 CREATE DATABASE IF NOT EXISTS db_esteban_orozco_linus
   DEFAULT CHARACTER SET utf8mb4

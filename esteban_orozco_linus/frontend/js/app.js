@@ -3,6 +3,8 @@ const API = location.origin + '/api';
 const $  = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
 
+//Propósito: “cola” la SPA: navegación, fetch a la API, llenar tablas, modal CRUD, filtros.
+
 let clientsCache = [];        
 let clientModal;              
 // -------------------- Utilidades --------------------

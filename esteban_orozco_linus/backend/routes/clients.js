@@ -1,6 +1,10 @@
+//Propósito: Exponer HTTP CRUD 
+// con validaciones, sanitización y whitelist de campos.
+
 const express = require('express');
 const router = express.Router();
 const Client = require('../models/Client');
+//
 
 // Campos permitidos 
 const ALLOWED_FIELDS = [
@@ -13,6 +17,8 @@ const ALLOWED_FIELDS = [
   'city',
   'department',
 ];
+ //Lista blanca: previene overposting (que te envíen campos inesperados).
+
 
 // Filtra payload a los campos permitidos
 const pickAllowed = (payload = {}) =>
